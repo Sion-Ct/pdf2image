@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>转换结果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>转换结果</h1>
+    <div class="images-container">
+        {% for image in images %}
+            <div class="image-item">
+                <img src="{{ url_for('uploaded_file', session_id=session_id, filename=image) }}" alt="Page {{ loop.index }}">
+                <p>
+                    <a href="{{ url_for('download_file', session_id=session_id, filename=image) }}">下载第 {{ loop.index }} 页</a>
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+    <p>
+        <a href="{{ url_for('download_zip', session_id=session_id) }}">下载所有图片 (ZIP)</a>
+    </p>
+</body>
+</html>
